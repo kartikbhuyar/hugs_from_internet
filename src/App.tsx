@@ -90,7 +90,7 @@ function App() {
         <div className="max-w-6xl mx-auto text-center py-12 px-4">
           <div className="mb-6">
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent mb-4 animate-fade-in">
-              Open When...
+              Dear Teju...
             </h1>
             <div className="flex justify-center space-x-2 mb-6">
               <Heart className="w-6 h-6 text-pink-400 fill-current animate-pulse" />
