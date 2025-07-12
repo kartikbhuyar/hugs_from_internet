@@ -1,13 +1,14 @@
 import React from 'react';
-import type { LetterCategory } from '../types/Letter';
+import { LetterCategory } from '../types/Letter';
 
 interface LetterCardProps {
   category: LetterCategory;
   isOpened: boolean;
+  count: number;
   onClick: () => void;
 }
 
-export const LetterCard: React.FC<LetterCardProps> = ({ category, isOpened, onClick }) => {
+export const LetterCard: React.FC<LetterCardProps> = ({ category, isOpened, count, onClick }) => {
   const IconComponent = category.icon;
 
   return (
@@ -24,7 +25,7 @@ export const LetterCard: React.FC<LetterCardProps> = ({ category, isOpened, onCl
         absolute inset-0 bg-gradient-to-br ${category.gradient} rounded-2xl blur-xl opacity-0 
         group-hover:opacity-40 transition-opacity duration-500 scale-110
       `} />
-
+      
       {/* Main card */}
       <div className={`
         relative bg-gradient-to-br ${category.gradient} p-8 rounded-2xl 
@@ -38,33 +39,38 @@ export const LetterCard: React.FC<LetterCardProps> = ({ category, isOpened, onCl
         <div className="absolute top-3 right-3 w-2 h-2 bg-white/60 rounded-full animate-pulse" />
         <div className="absolute top-6 right-6 w-1 h-1 bg-white/40 rounded-full animate-pulse delay-300" />
         <div className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-white/50 rounded-full animate-pulse delay-700" />
-
-        {/* Icon */}
+        
+        {/* Counter badge */}
+        <div className="absolute top-3 left-3 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 border border-white/30">
+          <span className="text-white text-sm font-bold">{count}</span>
+        </div>
+        
+        {/* Icon with floating animation */}
         <div className="text-white mb-4 transform transition-all duration-500 group-hover:scale-125 group-hover:rotate-12">
           <div className="animate-float">
             <IconComponent className="w-8 h-8" />
           </div>
         </div>
-
+        
         {/* Title */}
         <h3 className="text-white font-bold text-lg leading-tight mb-2 group-hover:text-white/90 transition-colors duration-300">
           {category.title}
         </h3>
-
+        
         {/* Subtitle */}
         <p className="text-white/80 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
           Click to open a letter
         </p>
-
-        {/* Opened Indicator */}
+        
+        {/* Opened indicator */}
         {isOpened && (
-          <div className="absolute top-3 left-3 flex items-center space-x-1">
+          <div className="absolute bottom-3 left-3 flex items-center space-x-1">
             <div className="w-2 h-2 bg-white/80 rounded-full animate-pulse" />
             <div className="text-white/80 text-xs font-medium">Opened</div>
           </div>
         )}
-
-        {/* Hover shimmer */}
+        
+        {/* Hover overlay with shimmer effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 group-hover:animate-shimmer" />
       </div>
     </div>
